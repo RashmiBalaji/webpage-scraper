@@ -1,38 +1,136 @@
-.App {
+* {
+  box-sizing: border-box;
+  
+  color:white;
+  
+}
+body {
+  background-color: black;
+}
+
+.header {
+  width:100%;
+  display:flex;
+justify-content: center;
+  height: 80px;
+  padding: 5px 0;
+ position: fixed;
+  background: slategray;
+  color: #f1f1f1;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif ;
+font-size: x-large;
+font-style: italic;
+}
+
+
+
+
+
+#search {
+  padding-top: 80px;
+  display: flex;
+  flex-direction: row;
+  width: 70%;
+  justify-items: center;
+  align-items: center;
+}
+
+
+#input {
+  padding-top:60px;
+  flex: 4;
+  margin: 30px 20px 0px 200px;
+  padding: 10px 10px;
+  border: 1px yellowgreen solid;
+  border-radius: 10px;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif ;
+  font-style: italic;
+  font-size: medium;
+  font-weight: bold;
+  align-content: center;
+  color: red;
+}
+
+h2 {
+  color: whitesmoke;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+button {
+  flex: 1;
+  border: 1px yellowgreen solid;
+  border-radius: 5px;
+  margin: 30px 20px 0px 20px;
+  padding: 10px 10px;
+  height: 40px;
+  font-size: medium;
+  font-weight: bold;
+  background-color: slategray;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-style: italic;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.headings-list li {
+  padding-left: 2px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* .html-content {
+  border: 1px yellowgreen solid;
+  border-radius: 20px;
+  width: 80%;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  color: beige;
+  height: 400px;
+  overflow-y: scroll;
+  padding: 10px 10px;
+  text-align: center;
+  align-self: center;
+  margin: 10%;
+} */
+
+.output-content {
+  width: 80%;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  color: beige;
+  margin: 20px 20px 20px 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.loader {
+  text-align: center;
+  color: white;
+  font-size: xx-large;
+  font-weight: bolder;
+  font-style: italic;
+  margin: 50px 50px;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.loading {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+table {
+  margin: 20px 20px 20px 50px;
+  border: 1px solid black;
+  border-collapse: collapse;
+ border-radius: 10px;
+ text-align: center;
+  /* border-style: hidden;
+  box-shadow: 0 0 0 1px #666; */
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+th, td {
+  padding: 10px 10px 10px 15px;
+  border: 1px solid #ccc;
+  border-collapse: collapse;
+}
+
+.links-display {
+  margin-left: 50px;
+  margin-bottom: 30px;
 }
