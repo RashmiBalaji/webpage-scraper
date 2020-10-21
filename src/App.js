@@ -1,11 +1,10 @@
 import React, {useState} from 'react';
 import './App.css';
 
-//const load = require('./assets/Loader.gif')
 
 function App() {
   const [input, setInput] = useState('');
-  //const [html, setHTML] = useState('');
+  const [version, setVersion] = useState('');
   const [title, setTitle]= useState('');
   const [headings,setHeadings] = useState('');
   const [internalLinks, setInternalLinks] = useState([]);
@@ -19,60 +18,49 @@ function App() {
   const [loader, setLoader] = useState(false);
   const baseURL = 'http://localhost:3001';
 
+
+  //Function that communicates to back-end server, where the entered URL is fetched and webpage scraped to get required details
+  //Promise chained with then to receive the response object from server and grab the details for rendering
   function passURL (url) {
-    console.log(JSON.stringify(url),"json stringify of input before post")
     fetch(`${baseURL}/url`, {
       method: 'POST',
-     // mode: "cors",
       headers: {
         'Content-Type': 'application/json',
       },
       body:JSON.stringify(url)
     })
-    // .then(response => {
-    // response.json()
-    //   .then(res => {
-    //   console.log("back from server")
-    //   console.log(res.rawHTML)
-    //   setHTML(res.rawHTML)
-    //  })
-   
-    // })
+    
     .then(response => {
       response.json()
-      .then(res =>{
-        console.log("response from server")
-        console.log(res)
-        setTitle(res.title)
-       setHeadings(res.Headings)
-       setInternalLinks(res.InternalLinks)
-       setExternalLinks(res.ExternalLinks)
-        setInternalLinksC(res.Internal)
-        setExternalLinksC(res.External)
-        setInacess(res.Inaccessible)
-        setForm(res.Form)
-        
-       
-        
-      } )
+        .then(res =>{
+          setVersion(res.Version)
+          setTitle(res.title)
+          setHeadings(res.Headings)
+          setInternalLinks(res.InternalLinks)
+          setExternalLinks(res.ExternalLinks)
+          setInternalLinksC(res.Internal)
+          setExternalLinksC(res.External)
+          setInacess(res.Inaccessible)
+          setForm(res.Form)
+        })
     })
   }
 
+  //Function to handle an entry in the input field
   function handleInputChange(e) {
     setInput(e.target.value);
-    
-    console.log(input)
+    setLoader(false);
   }
+
+  //Function which is called on input form submit, which triggers passURL function to back-end fetch
   function handleSubmit (e) {
     e.preventDefault();
     passURL({input});
     setLoader(true);
     setTitle('')
-    console.log("input is", input)
     setInput('');
     setShowInt(false)
     setShowExt(false)
-
   }
 
   function showInternalLinks () {
@@ -82,100 +70,107 @@ function App() {
   function showExternalLinks () {
     setShowExt(true)
    }
+
+   //Rendering of data on application
   return (
     <>
     <div class = "header" id="myHeader">
-   
-    <a href="https://fontmeme.com/fonts/aliandra-font/"><img src="https://fontmeme.com/permalink/201021/6ab07ccef3fa5cde287c0cf6424ea09c.png" alt="aliandra-font" border="0"/></a>  </div>
-      <form id = "search" onSubmit={handleSubmit}>
-    <input type="text" id = "input" placeholder="Enter your URL here" onChange={handleInputChange}></input>
-        <button id= "submit" type="submit">Submit</button>
-    </form>
-    {/* {html.length > 0 && (
-    <div className="html-content">
-        <h3>HTML Content of entered URL</h3>
-      {html}
+      <a href="https://fontmeme.com/fonts/aliandra-font/">
+        <img src="https://fontmeme.com/permalink/201021/6ab07ccef3fa5cde287c0cf6424ea09c.png" alt="aliandra-font" border="0"/>
+      </a>  
     </div>
-    )} */}
+
+    <div id = "search">
+      <form onSubmit={handleSubmit}>
+        <input type="text" id = "input" placeholder="Enter your URL here" onChange={handleInputChange}></input>
+        <button id= "submit" type="submit">Submit</button>
+      </form>
+    </div>
+
+   {/*To load fetcher icon during processing data */}
     {loader && !title && (
       <>
       <div className= "loading">
-      <h3 className="loader">Fetching...</h3>
-      {/*<img src={require('./assets/loader-image.png')} height = "100" width= "100" alt="loading.."/>*/}
-      <i class="fa fa-spinner fa-spin fa-5x fa-fw" aria-hidden="true" height="100" width="100"></i>
+        <h3 className="loader">Fetching...</h3>
+        <i class="fa fa-spinner fa-spin fa-5x fa-fw" aria-hidden="true" height="100" width="100"></i>
       </div>
       </>
     )}
-    {title && (
-    <div className="output-content">
-      <table>
-        <tr>
-          <th>Property</th>
-          <th>Value from webpage</th>
-        </tr>
-        <tr>
-<td>Title of webpage:</td>
- <td>{title}</td> 
- </tr>
- <tr>
-   <td>Headings by level: </td>
-   <td>
-     <ul className = "heading-list">
- {Object.keys(headings).map((key,value) => {
-   return (
-  <li>{key} : {headings[key]}</li>
-  
- )
-})
- }
- </ul>
-  </td>
-  </tr>
-  <tr>
-<td>Internal links on webpage </td>
- <td>{internalLinksC}
- <button onClick= {showInternalLinks}>Show Links</button>
- </td> 
- </tr>
- <tr>
-<td>External links on webpage</td>
- <td>{externalLinksC}
- <button onClick= {showExternalLinks}>Show Links</button>
- </td> 
- </tr>
- <tr>
- <td>Inaccessible links on webpage </td>
- <td>{inaccess}</td> 
- </tr>
 
- <tr>
- <td>Forms on page </td>
- <td>{form}</td> 
- </tr>
-  </table>    
-    </div>
+    {/*Rendering of data in table format */}  
+    {title && (
+      <div className="output-content">
+        <table>
+          <tr>
+            <th>Property</th>
+            <th>Value from webpage</th>
+          </tr>
+          <tr>
+            <td>HTML Version</td>
+            <td>{version}</td> 
+          </tr>
+          <tr>
+            <td>Title of webpage:</td>
+            <td>{title}</td> 
+          </tr>
+          <tr>
+            <td>Headings by level: </td>
+              <td>
+                <ul className = "heading-list">
+                  {Object.keys(headings).map((key,value) => {
+                    return (
+                    <li>{key} : {headings[key]}</li>
+                    )
+                  })
+                  }              
+                </ul>
+              </td>
+          </tr>
+          <tr>
+            <td>Internal links on webpage </td>
+            <td>{internalLinksC}
+              <button onClick= {showInternalLinks}>Show</button>
+            </td> 
+          </tr>
+          <tr>
+            <td>External links on webpage</td>
+            <td>{externalLinksC}
+              <button onClick= {showExternalLinks}>Show</button>
+            </td> 
+          </tr>
+          <tr>
+            <td>Inaccessible links on webpage </td>
+            <td>{inaccess}</td> 
+          </tr>
+          <tr>
+            <td>Forms on page </td>
+            <td>{form}</td> 
+          </tr>
+        </table>    
+      </div>
     )}
 
+  {/* To render list of internal and external links when user submits the show button*/}
     {showInt &&  title && (
       <div class = "links-display">
-        List of Internal Links
-       <ul>
+        <h3 style={{textDecoration:'underline'}}>List of Internal Links</h3>
+        <ul>
         {internalLinks.map(el => {
           return (
-            <li>{el}</li>
-
+            <li><a href={el} style={{textDecoration:'underline'}}>{el}</a></li>
           )
         })}
         </ul>
       </div>
     )}
+
      {showExt &&  title && (
       <div class = "links-display">
-        List of External Links
+        <h3 style={{textDecoration:'underline'}}>List of External Links</h3>
         <ul>
         {externalLinks.map(el => {
           return (
-            <li><a href={el}>{el}</a></li>
+            <li><a href={el} style={{textDecoration:'none'}}>{el}</a></li>
 
           )
         })}

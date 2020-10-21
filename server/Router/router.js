@@ -1,12 +1,8 @@
 'use strict';
 
 const router = require('express').Router();
-const message = require('../Controller/controller');
+const urldata = require('../Controller/urlscraper.js');
 
-router.post('/url', message.getSourceCode);
-
-
-
-//router.post('/events', message.postOne);
+router.post('/url', urldata.getSourceCode);
 
 module.exports = router;
