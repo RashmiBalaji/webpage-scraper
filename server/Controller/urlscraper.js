@@ -91,7 +91,11 @@ fetch('https://' + input)
                 try {
                     let resp = {};
                     if (isRelativeUrl($(link).attr('href'))) {
-                        resp = await axios.get('https://' + input + '/'+ $(link).attr("href"));
+                        if ($(link).attr("href").slice(0,1) === '/') {
+                            resp = await axios.get('https://' + input + $(link).attr("href"));
+                        } else {
+                            resp = await axios.get('https://' + input + '/'+ $(link).attr("href"));
+                        }
                         accessibleLinks++;
                     } else {
                         resp = await axios.get($(link).attr("href"));

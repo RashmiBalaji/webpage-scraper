@@ -16,7 +16,7 @@ body {
   position: fixed;
   background: slategray;
   color: #f1f1f1;
-  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif ;
+  font-family: Arial, Helvetica, sans-serif; 
   font-size: x-large;
   font-style: italic;
 }
@@ -39,8 +39,7 @@ body {
   padding: 10px 10px;
   border: 1px yellowgreen solid;
   border-radius: 10px;
-  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif ;
-  font-style: italic;
+  font-family: Arial, Helvetica, sans-serif;
   font-size: medium;
   font-weight: bold;
   align-content: center;
@@ -62,7 +61,7 @@ button {
   font-size: medium;
   font-weight: bold;
   background-color: slategray;
-  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-family: Arial, Helvetica, sans-serif;  
   font-style: italic;
 }
 
@@ -72,7 +71,7 @@ button {
 
 .output-content {
   width: 80%;
-  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-family: Arial, Helvetica, sans-serif; 
   color: beige;
   margin: 20px 20px 20px 50px;
   display: flex;
@@ -86,7 +85,7 @@ button {
   font-weight: bolder;
   font-style: italic;
   margin: 50px 50px;
-  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .loading {

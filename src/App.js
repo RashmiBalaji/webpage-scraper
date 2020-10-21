@@ -157,7 +157,7 @@ function App() {
         <ul>
         {internalLinks.map(el => {
           return (
-            <li><a href={el} style={{textDecoration:'underline'}}>{el}</a></li>
+            <li><a href={el}>{el}</a></li>
           )
         })}
         </ul>
@@ -170,7 +170,7 @@ function App() {
         <ul>
         {externalLinks.map(el => {
           return (
-            <li><a href={el} style={{textDecoration:'none'}}>{el}</a></li>
+            <li><a href={el}>{el}</a></li>
 
           )
         })}
