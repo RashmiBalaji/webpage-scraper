@@ -10,6 +10,7 @@
     "cheerio": "^1.0.0-rc.3",
     "cors": "^2.8.5",
     "dom-parser": "^0.1.6",
+    "dotenv": "^8.2.0",
     "is-relative-url": "^3.0.0",
     "node-fetch": "^2.6.1",
     "react": "^16.14.0",
