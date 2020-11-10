@@ -2,8 +2,13 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 This project was created using React for the front-end and Express for the back-end server. The server module has been included to handle the CORS aspect of the project. Cheerio and Axios libraries have been used to do the DOM manipulation of the fetched HTML source code and for fetching data from the links (on the scraped webpage) respectively.
 
+## Project clips
+<p align="center">
+  <img src="src/assets/webpage scraper.gif"/>
+  </p>
 
-# Running the application
+
+## Running the application
 
 After cloning the repository/ downloading the project files, switch to `src` folder of the project and run npm i to install all dependencies. 
 `cd src`
